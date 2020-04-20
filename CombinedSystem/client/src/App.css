@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+
+nav {
+  width: 100%;
+  background-color: black;
+  height: 3em;
+}
+
+.padTop {
+  padding-top: 2em;
+}
+
+.center {
+  text-align: center;
+}
