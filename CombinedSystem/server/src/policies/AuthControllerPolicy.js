@@ -2,6 +2,7 @@ const joi = require('joi')
 
 module.exports = {
     register(req, res, next) {
+        console.log(req.body)
         const schema = {
             email: joi.string().email(),
             password: joi.string().regex(
@@ -24,7 +25,7 @@ module.exports = {
             break
             default:
                 res.status(400).send({
-                    error: 'Invalid details'
+                    error: 'Something has gone wrong'
                 })
          }
         } else {
