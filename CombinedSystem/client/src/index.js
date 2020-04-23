@@ -14,8 +14,9 @@ import * as serviceWorker from './serviceWorker';
 const initialState = { 
   authReducer: [
     {
-      loggedIn: 'false',
-      token: ''
+      token: null,
+      user: null,
+      isUserLoggedIn: false
     }
   ] 
 };

@@ -3,13 +3,16 @@ import axios from 'axios';
 
 export class Register extends React.Component {
 
-    state = {
-      email: '',
-      password: '',
-      error: '',
-      success: ''
+    constructor(props) {
+      super(props);
+      this.state = {
+        email: '',
+        password: '',
+        error: '',
+        success: ''
+      }
     }
-
+ 
     handleSubmit = event => {
       event.preventDefault();
   
