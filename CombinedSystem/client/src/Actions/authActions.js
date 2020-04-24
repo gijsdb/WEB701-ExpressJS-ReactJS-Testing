@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { store } from '../index';
 
 export const loginUser = (email, password) => (dispatch, getState) => {
   dispatch({ type: 'LOGIN'});
@@ -17,8 +18,10 @@ export const loginUser = (email, password) => (dispatch, getState) => {
   }
 }
   
-export const logOutUser = email => ({
-  type: 'LOGOUT',
-  email
-})
+export const logoutUser = (email) => (dispatch, getState) => {
+  dispatch({ 
+    type: 'LOGIN',
+    email: store.getState().email
+  });
+}
 

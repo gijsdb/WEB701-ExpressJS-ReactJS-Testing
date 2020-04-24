@@ -5,7 +5,12 @@
 nav {
   width: 100%;
   background-color: black;
-  height: 3em;
+  height: 3.25em;
+}
+
+.nav-item {
+  margin: .5em;
+  font-size: 1.25em;
 }
 
 .padTop {
