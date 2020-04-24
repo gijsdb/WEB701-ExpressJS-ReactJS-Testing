@@ -1,7 +1,8 @@
 import React from 'react';
-import axios from 'axios'
+import { connect } from 'react-redux' 
+import { loginUser } from '../Actions/authActions'
 
-export class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
       super(props);
@@ -18,23 +19,7 @@ export class Login extends React.Component {
 
     onSubmit(e) {
       e.preventDefault();
-      try {
-        axios.post(`http://localhost:8091/login`, { email: this.state.email,password: this.state.password })
-        .then(res => {
-          console.log(res);
-          console.log(res.data.user.email);
-          this.setState({ 
-            email: res.data.user.email, 
-            error: null,
-            success: "Logged in"
-          });
-          
-        }).catch(error => {
-          console.log(error.response)
-        });
-      } catch(err) {
-        this.setState({error: err})
-      }
+      this.props.dispatch(loginUser(this.email.value, this.password.value));
     }
 
     onChange(e) {
@@ -54,13 +39,17 @@ export class Login extends React.Component {
               <form onChange={this.onChange} onSubmit={this.onSubmit}>
                 <input
                   type="text"
+                  id="email"
                   name="email"
                   placeholder="email"
+                  ref={node => this.email = node}
                 />
                 <input
                   type="password"
+                  id="password"
                   name="password"
                   placeholder="password"
+                  ref={node => this.password = node}
                 />
                 <p>{this.state.error}</p><br/>
                 <p>{this.state.success}</p>
@@ -73,6 +62,11 @@ export class Login extends React.Component {
     }
   }
 
-  
-  
-//  export default connect(null, { login })(Login)
+  function mapStateToProps(state) { //redux mapping part
+    return { 
+      token: state.authReducer.token,
+      user: state.authReducer.user
+    }
+  }
+
+  export default connect(mapStateToProps)(Login) //redux connecting

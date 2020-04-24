@@ -1,23 +1,26 @@
-const authReducer = (state = null, action) => {
+const initialState = { 
+  token: null,
+  user: null,
+  isUserLoggedIn: false 
+};
+
+const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'LOGIN':
-          return [
+          console.log(action.payload)
+          return {
             ...state,
-            {
-              token: action.token.text,
-              user: action.email.text,
-              isUserLoggedIn: true
-            }
-          ]
+            token: action.payload,
+            user: action.payload,
+            isUserLoggedIn: true
+          }
         case 'LOGOUT':
-          return [
+          return {
             ...state,
-            {
-              token: null,
-              user: null,
-              isUserLoggedIn: false
-            }
-          ]   
+            token: null,
+            user: null,
+            isUserLoggedIn: false
+          } 
         default:
             return state;
     }
