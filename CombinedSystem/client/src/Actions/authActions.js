@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { store } from '../index';
 
-export const loginUser = (email, password) => (dispatch, getState) => {
+export const loginUser = (email, password) => (dispatch) => {
   dispatch({ type: 'LOGIN'});
   try {
     axios.post(`http://localhost:8091/login`, { email, password })
@@ -18,10 +17,10 @@ export const loginUser = (email, password) => (dispatch, getState) => {
   }
 }
   
-export const logoutUser = (email) => (dispatch, getState) => {
+export const logoutUser = (email) => (dispatch) => {
   dispatch({ 
-    type: 'LOGIN',
-    email: store.getState().email
+    type: 'LOGOUT',
+    email: email
   });
 }
 

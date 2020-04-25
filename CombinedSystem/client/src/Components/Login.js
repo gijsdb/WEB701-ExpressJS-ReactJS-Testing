@@ -65,7 +65,8 @@ class Login extends React.Component {
   function mapStateToProps(state) { //redux mapping part
     return { 
       token: state.authReducer.token,
-      user: state.authReducer.user
+      user: state.authReducer.user,
+      isUserLoggedIn: state.authReducer.isUserLoggedIn
     }
   }
 
