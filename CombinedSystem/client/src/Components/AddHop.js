@@ -16,30 +16,27 @@ class AddHop extends React.Component {
             success: ''
         };
         this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.addHop = this.addHop.bind(this);
     }
 
     onChange(e) {
       this.setState({ [e.target.name]: e.target.value });
     }
 
-    onSubmit(e) {
-      e.preventDefault();
-      console.log(this.props.user.email)
-      /*
-      try {
-        axios.post(`http://localhost:8091/addhop`,
-          this.state.variety,
-          this.state.weight,
-          this.state.bitterness,
-          this.state.sweetness,
-          this.state.price.value,
-          this.props.user.email
-        )
-      } catch (error) {
-        console.log(error.response)
+    async addHop(e) {
+      const hop = {
+        variety: this.state.variety,
+        weight: this.state.amount,
+        bitterness: this.state.bitterness,
+        sweetness: this.state.sweetness,
+        price: this.state.price,
+        userId: this.props.user.email
       }
-      */
+      e.preventDefault();
+      //console.log(this.state.amount)
+        await axios.post(`http://localhost:8091/addhop`,
+            hop
+        )
 
     }
     
@@ -56,64 +53,57 @@ class AddHop extends React.Component {
                         </div>
 
                         <div className="row">
-                            <div className="col">
-                                <form onChange={this.onChange} onSubmit={this.onSubmit} className="AddHops">
-                                    <div className="row">
-                                    <div className="col">
-                                    <label>Variety</label><br/>
-                                    <input 
-                                        type="text" 
-                                        name="variety" 
-                                        placeholder="variety"
-                                        ref={node => this.variety = node}
-                                    /><br/>
-                                    <label>Weight (KG)</label><br/>
-                                    <input 
-                                        type="number"  
-                                        name="amount"  
-                                        min="1" 
-                                        max="100" 
-                                        placeholder="weight"
-                                        ref={node => this.amount = node}
-                                    /><br/>
-                                    </div>
-                                    <div className="col">
-                                        <label>Bitterness</label><br/>
+                                <div className="col">
+                                    <form onChange={this.onChange} onSubmit={this.addHop} className="AddHops">
+                                        <label>Variety</label><br/>
                                         <input 
-                                            type="number"
-                                            name="bitterness" 
-                                            placeholder="bitterness" 
-                                            defaultValue="1" 
+                                            type="text" 
+                                            name="variety" 
+                                            placeholder="variety"
+                                            ref={node => this.variety = node}
+                                        /><br/>
+                                        <label>Weight (KG)</label><br/>
+                                        <input 
+                                            type="number"  
+                                            name="amount"  
                                             min="1" 
-                                            max="10"
-                                            ref={node => this.bitterness = node}
+                                            max="100" 
+                                            placeholder="weight"
+                                            ref={node => this.amount = node}
                                         /><br/>
-                                        <label>Sweetness</label><br/>
+                                            <label>Bitterness</label><br/>
+                                            <input 
+                                                type="number"
+                                                name="bitterness" 
+                                                placeholder="bitterness" 
+                                                defaultValue="1" 
+                                           
+                                                ref={node => this.bitterness = node}
+                                            /><br/>
+                                            <label>Sweetness</label><br/>
+                                            <input 
+                                                type="number" 
+                                                name="sweetness" 
+                                                placeholder="sweetness" 
+                                                defaultValue="1" 
+                                                min="1"
+                                                max="10"
+                                                ref={node => this.sweetness = node}
+                                            /><br/>
+                                        <label>Price (NZD)</label><br/>
                                         <input 
-                                            type="number" 
-                                            name="sweetness" 
-                                            placeholder="sweetness" 
-                                            defaultValue="1" 
-                                            min="1"
-                                            max="10"
-                                            ref={node => this.sweetness = node}
+                                            type="number"  
+                                            name="price" 
+                                            placeholder="0 Dollars"
+                                            ref={node => this.price = node}
                                         /><br/>
-                                    </div>
-                                    </div>
-                                    <label>Price (NZD)</label><br/>
-                                    <input 
-                                        type="number"  
-                                        name="price" 
-                                        placeholder="0 Dollars"
-                                        ref={node => this.price = node}
-                                    /><br/>
-                                    <button className="btnAddHop">Add hop</button><br/>
-                                </form>
-                                <p>{this.state.error}</p><br/>
-                                <p>{this.state.success}</p>
+                                        <button className="btnAddHop">Add hop</button><br/>
+                                   </form>
+                                    <p>{this.state.error}</p><br/>
+                                    <p>{this.state.success}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <div className="col-md-6">
                         <h2>Free for extra fuctions</h2>
                     </div>
