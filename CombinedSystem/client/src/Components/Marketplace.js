@@ -1,10 +1,23 @@
 import React from 'react';
 import axios from 'axios'
+import AddHop from './AddHop'
 
 class Marketplace extends React.Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.state = {
+          hops: []
+        }
+      }
 
+    componentDidMount() {
+      axios.get("http://localhost:8091/retrievehops")
+      .then(res => {
+        //this.state.hops = res.data;
+        this.setState({ hops: res.data });
+      })
+      console.log(this.state.hops)
     }
 
     render() {
@@ -15,7 +28,7 @@ class Marketplace extends React.Component {
                 <h1>Marketplace</h1>
             </div>
             </div>
-            {/* Add new product component here */}
+            <AddHop></AddHop>
             <div className="row padTop">
                 <div className="col">
                     <h1>Hops stored in database</h1>
@@ -23,19 +36,22 @@ class Marketplace extends React.Component {
             </div>
 
             <div className="row padBottom">
-            <div className="col-md-4">
-                <div className="card hopCard">
-                <img src="../assets/isolatedHop.png" className="card-img-top" alt="..."/>
-                <div className="card-body">
-                    <h5 className="card-title"></h5>
-                    <p className="card-text"> Bitterness: </p>
-                    <p className="card-text"> Sweetness: </p>
-                    <p className="card-text"> Weight: </p>
-                    <p className="card-text"> Price: </p>
-                    <p className="card-text"> Added by:</p>
-                </div>
-                </div>
-            </div>
+                {this.state.hops.map((hop) =>
+                    <div key={hop.hopId} className="col-md-4">
+                        <div className="card hopCard">
+                        <img src={require('../img/isolatedHop.png')} className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title"></h5>
+                            <p className="card-text"> Bitterness: {hop.variety} </p>
+                            <p className="card-text"> Bitterness: {hop.bitterness} </p>
+                            <p className="card-text"> Sweetness: {hop.sweetness} </p>
+                            <p className="card-text"> Weight:  {hop.weight}</p>
+                            <p className="card-text"> Price: {hop.price}</p>
+                            <p className="card-text"> Added by: {hop.userId}</p>
+                        </div>
+                        </div>
+                    </div>
+                )}
             </div>
             
         </div>
