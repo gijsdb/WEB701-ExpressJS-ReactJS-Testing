@@ -12,6 +12,7 @@ import Login from "./Components/Login"
 import ProtectedRoute from './Components/ProtectedRoute'
 import Marketplace from './Components/Marketplace'
 import Navigation from './Components/Navigation'
+import Hop from './Components/Hop'
 import { Register } from "./Components/Register"
 
 import './App.css';
@@ -26,6 +27,7 @@ class App extends React.Component {
           <Route path="/login" exact component={Login}/>
           <Route path="/register" exact component={Register}/>
           <ProtectedRoute path="/marketplace" loggedIn={this.props.isUserLoggedIn} component={Marketplace} />
+          <ProtectedRoute path="/hop/:id" loggedIn={this.props.isUserLoggedIn} component={Hop} />
         </Switch>
       </Router>
     );
