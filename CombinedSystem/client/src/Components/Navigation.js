@@ -13,8 +13,7 @@ class Navigation extends React.Component {
     }
 
     logout() {
-      console.log(this.props.user.email)
-      this.props.dispatch(logoutUser(this.props.user.email));
+      this.props.dispatch(logoutUser());
     }
 
     render() {

@@ -10,6 +10,9 @@ export const loginUser = (email, password) => (dispatch) => {
       token: res.data.token,
       user: res.data.user 
     })).catch(error => {
+      dispatch({
+        type: 'LOGOUT'
+      })
       console.log(error.response)
     });
   } catch(err) {
@@ -17,10 +20,9 @@ export const loginUser = (email, password) => (dispatch) => {
   }
 }
   
-export const logoutUser = (email) => (dispatch) => {
+export const logoutUser = () => (dispatch) => {
   dispatch({ 
     type: 'LOGOUT',
-    email: email
   });
 }
 

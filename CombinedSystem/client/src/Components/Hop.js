@@ -36,26 +36,26 @@ class Hop extends React.Component {
                         <h2>Variety</h2>
                         <h3>{this.state.hop.variety}</h3><br/>
                         <h2>Weight</h2>
-                        <h3>{this.state.hop.variety}</h3><br/>
+                        <h3>{this.state.hop.weight}</h3><br/>
                     </div>
                     <div className="col-6">
                         <div>
                             <h2>Bitterness</h2>
-                            <h3>{this.state.hop.variety}</h3><br/>
+                            <h3>{this.state.hop.bitterness}</h3><br/>
                             <h2>Sweetness</h2>
-                            <h3>{this.state.hop.variety}</h3><br/>
+                            <h3>{this.state.hop.sweetness}</h3><br/>
                         </div>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col">
                         <h2>Price</h2>
-                        <h3>{this.state.hop.variety}</h3><br/>
+                        <h3>{this.state.hop.price}</h3><br/>
                     </div>
                 </div>
             </div>
             <div className="col-md-6">
-                <Bidding></Bidding>
+                <Bidding hop={this.state.hop}></Bidding>
             </div>
         </div>
     </div>
